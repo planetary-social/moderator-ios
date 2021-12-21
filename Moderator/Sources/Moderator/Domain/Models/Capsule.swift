@@ -10,10 +10,10 @@ import Foundation
 class Capsule {
 
     var katamari: Data?
-    var threads: Data?
-    var groups = Data?
+    var threads: CapsuleItemSet?
+    var groups: CapsuleItemSet?
 
-    init(katamari: Data?, threads: Data?, groups: Data?) {
+    init(katamari: Data?, threads: CapsuleItemSet?, groups: CapsuleItemSet?) {
         self.katamari = katamari
         self.threads = threads
         self.groups = groups

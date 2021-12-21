@@ -29,6 +29,8 @@ let package = Package(
         .testTarget(
             name: "ModeratorTests",
             dependencies: ["Moderator"],
-            resources: [.copy("Samples/valid_data")]),
+            resources: [.copy("Samples/valid_capsule"),
+                        .copy("Samples/valid_capsule_item_set"),
+                        .copy("Samples/valid_capsule_item")]),
     ]
 )

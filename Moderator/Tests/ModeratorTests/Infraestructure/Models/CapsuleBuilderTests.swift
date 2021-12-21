@@ -18,13 +18,13 @@ class CapsuleBuilderTests: XCTestCase {
     }
 
     func testBuildWithValidData() {
-        let url = Bundle.module.url(forResource: "valid_data", withExtension: nil)!
+        let url = Bundle.module.url(forResource: "valid_capsule", withExtension: nil)!
         let data = try! Data(contentsOf: url)
         let capsule = builder.build(data: data)
         XCTAssertNotNil(capsule)
         XCTAssertNotNil(capsule?.katamari)
         XCTAssertNotNil(capsule?.threads)
-        XCTAssertNotNil(capsule?.groups)
+        XCTAssertNil(capsule?.groups)
     }
 
 }

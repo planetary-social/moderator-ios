@@ -11,8 +11,8 @@ class CapsuleBuilder {
 
     func build(data: Data) -> Capsule? {
         var katamari: Data?
-        var threads: Data?
-        var groups: Data?
+        var threads: CapsuleItemSet?
+        var groups: CapsuleItemSet?
 
         var offset: Int = 6
 
@@ -32,7 +32,9 @@ class CapsuleBuilder {
             offset += 1
             let tDataLength = data.dropFirst(offset).prefix(2).reduce(0) { $0 << 8 | UInt16($1) }
             offset += 2
-            threads = Data(data.dropFirst(offset).prefix(Int(tDataLength)))
+            let tData = Data(data.dropFirst(offset).prefix(Int(tDataLength)))
+            let builder = CapsuleItemSetBuilder()
+            threads = builder.build(data: tData)
             offset += Int(tDataLength)
         }
 
@@ -42,7 +44,9 @@ class CapsuleBuilder {
             offset += 1
             let gDataLength = data.dropFirst(offset).prefix(2).reduce(0) { $0 << 8 | UInt16($1) }
             offset += 2
-            groups = Data(data.dropFirst(offset).prefix(Int(gDataLength)))
+            let gData = Data(data.dropFirst(offset).prefix(Int(gDataLength)))
+            let builder = CapsuleItemSetBuilder()
+            groups = builder.build(data: gData)
             offset += Int(gDataLength)
         }
 
