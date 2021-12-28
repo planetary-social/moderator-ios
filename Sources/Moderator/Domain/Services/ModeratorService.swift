@@ -9,6 +9,6 @@ import Foundation
 
 protocol ModeratorService {
 
-    func handshake(completion: @escaping ((Bool) -> Void))
+    func posts(completion: @escaping ((Capsule?) -> Void))
     
 }

@@ -16,8 +16,17 @@ public class Moderator {
         self.service = service
     }
 
-    public func handshake(completion: @escaping ((Bool) -> Void)) {
-        service.handshake(completion: completion)
+    public func everyone(completion: @escaping (([Post]) -> Void)) {
+        service.posts { capsule in
+            guard let items = capsule?.threads?.items else {
+                completion([])
+                return
+            }
+            completion(items.map({ item in
+                let builder = PostBuilder()
+                return builder.build(item: item)
+            }))
+        }
     }
 
 }
